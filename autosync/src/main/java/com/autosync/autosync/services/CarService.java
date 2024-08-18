@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.autosync.autosync.utils.CustomExceptions;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CarService {
@@ -32,4 +33,15 @@ public class CarService {
             throw new CustomExceptions.CarOwnerNotProvidedException("Car owner is not provided.");
         }
     }
+
+    public CarModel getCarById(UUID carId) throws CustomExceptions.CarNotFoundException{
+        Optional<CarModel> retrievedCar = carRepository.findById(carId);
+        if(retrievedCar.isPresent()){
+            return retrievedCar.get();
+        }
+        else{
+            throw new CustomExceptions.CarNotFoundException("Car not found");
+        }
+    }
+
 }
