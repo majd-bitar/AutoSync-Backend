@@ -36,5 +36,10 @@ public class ProfileController {
         return new ResponseEntity<>(profiles, HttpStatus.OK);
     }
 
+    @PutMapping("/{profileId}")
+    public ResponseEntity<ProfileModel> updateProfile(@PathVariable UUID profileId, @RequestBody ProfileModel profileDetails) {
+        ProfileModel updatedProfile = profileService.updateProfile(profileId, profileDetails);
+        return new ResponseEntity<>(updatedProfile, HttpStatus.OK);
+    }
 
 }
