@@ -1,4 +1,4 @@
-package com.autosync.autosync.utils;
+package com.autosync.autosync.ExceptionHandling;
 
 public class CustomExceptions {
     public static class ProfileNotFoundException extends RuntimeException {

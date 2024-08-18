@@ -6,7 +6,7 @@ import com.autosync.autosync.repositories.CarOwnerRepository;
 import com.autosync.autosync.repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.autosync.autosync.utils.CustomExceptions;
+import com.autosync.autosync.ExceptionHandling.CustomExceptions;
 
 import java.util.Optional;
 import java.util.UUID;

@@ -3,8 +3,9 @@ package com.autosync.autosync.services;
 import com.autosync.autosync.models.ProfileModel;
 import com.autosync.autosync.repositories.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import com.autosync.autosync.utils.CustomExceptions;
+import com.autosync.autosync.ExceptionHandling.CustomExceptions;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,8 +17,12 @@ public class ProfileService {
     @Autowired
     ProfileRepository profileRepository;
 
-    public ProfileModel createProfile(ProfileModel profile){
-        return profileRepository.save(profile);
+    public ProfileModel createProfile(ProfileModel profile) {
+        try {
+            return profileRepository.save(profile);
+        } catch (DataIntegrityViolationException e) {
+            throw new CustomExceptions.UniqueKeyViolationException("Profile already exists");
+        }
     }
 
     public ProfileModel getProfileById(UUID profileId) throws CustomExceptions.ProfileNotFoundException{
