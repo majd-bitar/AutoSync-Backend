@@ -44,4 +44,15 @@ public class CarService {
         }
     }
 
+    public CarModel updateCar(UUID carId,CarModel car) throws CustomExceptions.CarNotFoundException{
+        Optional<CarModel> existingCar = carRepository.findById(carId);
+        if(existingCar.isPresent()){
+            existingCar.get().setModel(car.getModel());
+            existingCar.get().setCarImage(car.getCarImage());
+            existingCar.get().setYear(car.getYear());
+        }
+        else{
+            throw new CustomExceptions.CarNotFoundException("Can't update a non existing car");
+        }
+    }
 }
