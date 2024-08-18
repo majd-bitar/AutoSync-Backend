@@ -34,4 +34,23 @@ public class ProfileService {
         return profileRepository.findAll();
     }
 
+    public ProfileModel updateProfile(UUID profileId,ProfileModel profileDetails) throws CustomExceptions.ProfileNotFoundException{
+        Optional<ProfileModel> existingProfile = profileRepository.findById(profileId);
+        if(existingProfile.isPresent()){
+            existingProfile.get().setFirstName(profileDetails.getFirstName());
+            existingProfile.get().setMiddleName(profileDetails.getMiddleName());
+            existingProfile.get().setLastName(profileDetails.getLastName());
+            existingProfile.get().setEmail(profileDetails.getEmail());
+            existingProfile.get().setPhoneNumber(profileDetails.getPhoneNumber());
+            existingProfile.get().setAddress(profileDetails.getAddress());
+
+            return profileRepository.save(existingProfile.get());
+        }
+        else{
+            throw new CustomExceptions.ProfileNotFoundException("Profile not found");
+        }
+    }
+
+
+
 }
