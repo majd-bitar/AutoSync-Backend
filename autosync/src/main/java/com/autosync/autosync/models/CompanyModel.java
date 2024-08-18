@@ -24,7 +24,7 @@ public class CompanyModel {
 
     //storing the image as BLOB : binary large object
     @Lob
-    @Column(name = "company_logo", columnDefinition = "BLOB")
+    @Column(name = "company_logo", columnDefinition = "BYTEA")
     private byte[] companyLogo;
 
     @Column(name = "company_address",nullable = false)
@@ -38,7 +38,7 @@ public class CompanyModel {
     private List<MechanicModel> mechanics;
 
     //a company can only have one license type
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "license_id")
     private LicenseModel license;
 }

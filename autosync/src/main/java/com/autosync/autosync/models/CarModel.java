@@ -29,7 +29,7 @@ public class CarModel {
 
     //storing the image as BLOB : binary large object
     @Lob
-    @Column(name = "car_image", columnDefinition = "BLOB")
+    @Column(name = "car_image", columnDefinition = "BYTEA")
     private byte[] carImage;
 
     //a car can be owned by many car owners

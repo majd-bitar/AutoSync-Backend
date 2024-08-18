@@ -41,14 +41,14 @@ public class ProfileModel {
 
     //a profile has a login
     @OneToOne(mappedBy = "loginProfile", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<LoginModel> logins;
+    private LoginModel login;
 
     //a profile belongs to a car owner
     @OneToOne(mappedBy = "carOwnerProfile",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<CarOwnerModel> carOwners;
+    private CarOwnerModel carOwner;
 
     //a profile belongs to a mechanic
     @OneToOne(mappedBy = "mechanicProfile",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<MechanicModel> mechanics;
+    private MechanicModel mechanic;
 
 }

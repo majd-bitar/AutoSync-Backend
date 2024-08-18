@@ -30,7 +30,7 @@ public class LicenseModel {
 
     //a license type can be owned by one company
     @OneToOne(mappedBy = "license")
-    private List<CompanyModel> companies;
+    private CompanyModel company;
 }
 
 enum Type{
