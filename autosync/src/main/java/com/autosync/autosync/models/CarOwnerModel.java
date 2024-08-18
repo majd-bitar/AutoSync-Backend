@@ -12,6 +12,7 @@ import java.util.UUID;
 @Setter
 @Table(name = "car_owners")
 public class CarOwnerModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "car_owner_id",nullable = false,unique = true)
@@ -27,7 +28,7 @@ public class CarOwnerModel {
     @JoinColumn(name = "mechanic_id")
     private MechanicModel carOwnerMechanic;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "car_id")
     private CarModel car;
 

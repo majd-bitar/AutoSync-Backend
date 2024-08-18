@@ -33,8 +33,8 @@ public class CarModel {
     private byte[] carImage;
 
     //a car can be owned by many car owners
-    @OneToMany(mappedBy = "car")
-    private List<CarOwnerModel> carOwners;
+    @OneToOne(mappedBy = "car")
+    private CarOwnerModel carOwner;
 
     //a car can have many diagnostics
     @OneToMany(mappedBy = "carDiagnostic")
