@@ -30,6 +30,12 @@ public class LoginModel {
     @Column(name = "role",nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    //a login has a profile
+    @OneToOne()
+    @JoinColumn(name = "profile_id")
+    private ProfileModel loginProfile;
+
 }
 
 enum Role{

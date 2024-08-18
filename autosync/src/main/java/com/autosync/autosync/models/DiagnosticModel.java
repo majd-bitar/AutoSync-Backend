@@ -28,4 +28,9 @@ public class DiagnosticModel {
     @Column(name = "diagnostic_date")
     private Date diagnosticDate;
 
+    //a diagnostic can be for only one car
+    @ManyToOne
+    @JoinColumn(name = "car_id")
+    private CarModel carDiagnostic;
+
 }

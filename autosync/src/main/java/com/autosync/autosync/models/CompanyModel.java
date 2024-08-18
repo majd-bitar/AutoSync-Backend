@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -31,4 +32,13 @@ public class CompanyModel {
 
     @Column(name = "company_phone_number",nullable = false)
     private String companyPhoneNumber;
+
+    //a company can have many mechanics
+    @OneToMany(mappedBy = "company")
+    private List<MechanicModel> mechanics;
+
+    //a company can only have one license type
+    @ManyToOne
+    @JoinColumn(name = "license_id")
+    private LicenseModel license;
 }

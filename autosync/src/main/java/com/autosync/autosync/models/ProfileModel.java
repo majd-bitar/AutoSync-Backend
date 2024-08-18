@@ -8,6 +8,7 @@ import lombok.NonNull;
 import lombok.Setter;
 import org.antlr.v4.runtime.misc.NotNull;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -32,10 +33,22 @@ public class ProfileModel {
     @Column(name = "email",unique = true,nullable = false)
     private String email;
 
-    @Column(name = "email",unique = true,nullable = false)
+    @Column(name = "phone_number",unique = true,nullable = false)
     private String phoneNumber;
 
     @Column(name = "address")
     private String address;
+
+    //a profile has a login
+    @OneToOne(mappedBy = "loginProfile", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LoginModel> logins;
+
+    //a profile belongs to a car owner
+    @OneToOne(mappedBy = "carOwnerProfile",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<CarOwnerModel> carOwners;
+
+    //a profile belongs to a mechanic
+    @OneToOne(mappedBy = "mechanicProfile",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<MechanicModel> mechanics;
 
 }

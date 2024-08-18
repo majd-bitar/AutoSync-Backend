@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -26,6 +27,10 @@ public class LicenseModel {
     @Enumerated(EnumType.STRING)
     @Column(name = "type",nullable = false)
     private Type type;
+
+    //a license type can be owned by one company
+    @OneToOne(mappedBy = "license")
+    private List<CompanyModel> companies;
 }
 
 enum Type{

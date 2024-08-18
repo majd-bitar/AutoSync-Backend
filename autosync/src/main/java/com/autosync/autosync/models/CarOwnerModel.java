@@ -17,4 +17,18 @@ public class CarOwnerModel {
     @Column(name = "car_owner_id",nullable = false,unique = true)
     private UUID carOwnerId;
 
+    //a car owner has a profile
+    @OneToOne
+    @JoinColumn(name = "profile_id")
+    private ProfileModel carOwnerProfile;
+
+    //a car owner belongs to a mechanic
+    @ManyToOne
+    @JoinColumn(name = "mechanic_id")
+    private MechanicModel carOwnerMechanic;
+
+    @ManyToOne
+    @JoinColumn(name = "car_id")
+    private CarModel car;
+
 }
