@@ -54,5 +54,10 @@ public class CustomExceptions {
             super(message);
         }
     }
+    public static class UniqueKeyViolationException extends RuntimeException {
+        public UniqueKeyViolationException(String message) {
+            super(message);
+        }
+    }
 
 }
