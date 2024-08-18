@@ -1,4 +1,4 @@
-package com.autosync.autosync.models;
+package com.autosync.autosync.Models;
 
 
 import jakarta.persistence.*;

@@ -1,7 +1,7 @@
-package com.autosync.autosync.models;
+package com.autosync.autosync.Models;
 
 
-import com.autosync.autosync.utils.JsonConverter;
+import com.autosync.autosync.Utils.JsonConverter;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

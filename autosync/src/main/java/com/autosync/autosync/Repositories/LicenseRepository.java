@@ -1,6 +1,6 @@
-package com.autosync.autosync.repositories;
+package com.autosync.autosync.Repositories;
 
-import com.autosync.autosync.models.LicenseModel;
+import com.autosync.autosync.Models.LicenseModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

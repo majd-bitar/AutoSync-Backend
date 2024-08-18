@@ -14,11 +14,64 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(CustomExceptions.CarNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleCarNotFoundException(CustomExceptions.CarNotFoundException ex){
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CustomExceptions.ProfileNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleProfileNotFoundException(CustomExceptions.ProfileNotFoundException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CustomExceptions.ProfileNotProvidedException.class)
+    public ResponseEntity<ErrorResponse> handleProfileNotProvidedException(CustomExceptions.ProfileNotProvidedException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CustomExceptions.CarNotProvidedException.class)
+    public ResponseEntity<ErrorResponse> handleCarNotProvidedException(CustomExceptions.CarNotProvidedException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CustomExceptions.LicenseNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleLicenseNotFoundException(CustomExceptions.LicenseNotFoundException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CustomExceptions.LicenseNotProvidedException.class)
+    public ResponseEntity<ErrorResponse> handleLicenseNotProvidedException(CustomExceptions.LicenseNotProvidedException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CustomExceptions.CompanyNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleCompanyNotFoundException(CustomExceptions.CompanyNotFoundException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CustomExceptions.CompanyNotProvidedException.class)
+    public ResponseEntity<ErrorResponse> handleCompanyNotProvidedException(CustomExceptions.CompanyNotProvidedException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CustomExceptions.CarOwnerNotProvidedException.class)
+    public ResponseEntity<ErrorResponse> handleCarOwnerNotProvidedException(CustomExceptions.CarOwnerNotProvidedException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    //other exceptions
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneralException(Exception ex) {
         ErrorResponse errorResponse = new ErrorResponse("An unexpected error occurred.");
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
-
-

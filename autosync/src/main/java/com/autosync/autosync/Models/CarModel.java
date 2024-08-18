@@ -1,8 +1,7 @@
-package com.autosync.autosync.models;
+package com.autosync.autosync.Models;
 
 
 import jakarta.persistence.*;
-import jdk.jshell.Diag;
 import lombok.Getter;
 import lombok.Setter;
 

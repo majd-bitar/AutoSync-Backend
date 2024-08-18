@@ -1,7 +1,7 @@
-package com.autosync.autosync.services;
+package com.autosync.autosync.Services;
 
-import com.autosync.autosync.models.ProfileModel;
-import com.autosync.autosync.repositories.ProfileRepository;
+import com.autosync.autosync.Models.ProfileModel;
+import com.autosync.autosync.Repositories.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;

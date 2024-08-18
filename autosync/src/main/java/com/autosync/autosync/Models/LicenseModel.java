@@ -1,11 +1,10 @@
-package com.autosync.autosync.models;
+package com.autosync.autosync.Models;
 
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity

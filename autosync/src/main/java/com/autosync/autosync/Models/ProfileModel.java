@@ -1,14 +1,10 @@
-package com.autosync.autosync.models;
+package com.autosync.autosync.Models;
 
 
-import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
-import org.antlr.v4.runtime.misc.NotNull;
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity

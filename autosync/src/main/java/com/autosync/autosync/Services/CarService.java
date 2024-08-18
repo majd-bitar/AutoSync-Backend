@@ -1,9 +1,9 @@
-package com.autosync.autosync.services;
+package com.autosync.autosync.Services;
 
-import com.autosync.autosync.models.CarModel;
-import com.autosync.autosync.models.CarOwnerModel;
-import com.autosync.autosync.repositories.CarOwnerRepository;
-import com.autosync.autosync.repositories.CarRepository;
+import com.autosync.autosync.Models.CarModel;
+import com.autosync.autosync.Models.CarOwnerModel;
+import com.autosync.autosync.Repositories.CarOwnerRepository;
+import com.autosync.autosync.Repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.autosync.autosync.ExceptionHandling.CustomExceptions;

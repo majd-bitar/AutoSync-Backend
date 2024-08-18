@@ -1,4 +1,4 @@
-package com.autosync.autosync.utils;
+package com.autosync.autosync.Utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.AttributeConverter;
