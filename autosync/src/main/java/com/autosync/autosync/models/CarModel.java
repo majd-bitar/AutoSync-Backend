@@ -25,7 +25,7 @@ public class CarModel {
     @Column(name = "year")
     private Year year;
 
-    //storing the image ias BLOB : binary large object
+    //storing the image as BLOB : binary large object
     @Lob
     @Column(name = "car_image", columnDefinition = "BLOB")
     private byte[] carImage;
