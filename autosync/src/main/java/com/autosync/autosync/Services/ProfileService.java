@@ -52,7 +52,6 @@ public class ProfileService {
             if (existingProfileOptional.isPresent()) {
                 ProfileModel existingProfile = existingProfileOptional.get();
 
-                // Update attributes only if they are not null in profileDetails
                 if (profileDetails.getFirstName() != null) {
                     existingProfile.setFirstName(profileDetails.getFirstName());
                 }

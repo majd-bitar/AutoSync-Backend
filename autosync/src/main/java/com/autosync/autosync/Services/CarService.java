@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.autosync.autosync.ExceptionHandling.CustomExceptions;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -44,15 +45,34 @@ public class CarService {
         }
     }
 
-    public CarModel updateCar(UUID carId,CarModel car) throws CustomExceptions.CarNotFoundException{
-        Optional<CarModel> existingCar = carRepository.findById(carId);
-        if(existingCar.isPresent()){
-            existingCar.get().setModel(car.getModel());
-            existingCar.get().setCarImage(car.getCarImage());
-            existingCar.get().setYear(car.getYear());
-            return carRepository.save(existingCar.get());
+    public List<CarModel> getAllCars(){
+        try {
+            return carRepository.findAll();
+        } catch (Exception e) {
+            throw new CustomExceptions.CarNotFoundException("Error retrieving cars");
         }
-        else{
+    }
+
+    public CarModel updateCar(UUID carId, CarModel carDetails) throws CustomExceptions.CarNotFoundException {
+        try {
+            Optional<CarModel> existingCarOptional = carRepository.findById(carId);
+
+            if (existingCarOptional.isPresent()) {
+                CarModel existingCar = existingCarOptional.get();
+                if (carDetails.getModel() != null) {
+                    existingCar.setModel(carDetails.getModel());
+                }
+                if (carDetails.getCarImage() != null) {
+                    existingCar.setCarImage(carDetails.getCarImage());
+                }
+                if (carDetails.getYear() != null) {
+                    existingCar.setYear(carDetails.getYear());
+                }
+                return carRepository.save(existingCar);
+            } else {
+                throw new CustomExceptions.CarNotFoundException("Car not found");
+            }
+        } catch (Exception e) {
             throw new CustomExceptions.CarNotFoundException("Car not found");
         }
     }

@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.PublicKey;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -29,5 +31,17 @@ public class CarController {
     public ResponseEntity<CarModel> getCarById(@PathVariable UUID carId){
         CarModel retrievedCar = carService.getCarById(carId);
         return new ResponseEntity<>(retrievedCar,HttpStatus.FOUND);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<CarModel>> getAllCars(){
+        List<CarModel> cars = carService.getAllCars();
+        return new ResponseEntity<>(cars,HttpStatus.FOUND);
+    }
+
+    @PutMapping("/{carId}")
+    public ResponseEntity<CarModel> updateCar(@PathVariable UUID carId,@RequestBody CarModel car){
+        CarModel updatedCar = carService.updateCar(carId,car);
+        return new ResponseEntity<>(updatedCar,HttpStatus.OK);
     }
 }
