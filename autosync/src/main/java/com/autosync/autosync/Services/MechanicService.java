@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.autosync.autosync.ExceptionHandling.CustomExceptions;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -45,6 +46,14 @@ public class MechanicService {
             return retrievedMechanic.get();
         } else {
             throw new CustomExceptions.MechanicNotFoundException("Mechanic not found");
+        }
+    }
+
+    public List<MechanicModel> getAllMechanics() {
+        try {
+            return mechanicRepository.findAll();
+        } catch (Exception e) {
+            throw new CustomExceptions.MechanicNotFoundException("Error retrieving mechanics");
         }
     }
 
