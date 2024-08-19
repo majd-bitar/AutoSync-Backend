@@ -1,5 +1,7 @@
 package com.autosync.autosync.Configurations;
 
+import com.autosync.autosync.Configurations.JwtAuthenticationFilter;
+import jakarta.servlet.Filter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -8,8 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
-import static org.springframework.security.config.Customizer.withDefaults;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 public class SecurityConfig {
@@ -25,9 +26,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable) // Disable CSRF for simplicity; enable it in production with proper configuration
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/authenticate/signup", "/authenticate/login").permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().authenticated() // All other requests need authentication
                 )
-                .httpBasic(withDefaults()); // Use HTTP Basic authentication
+                .addFilterBefore(JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class); // Add JWT filter
 
         return http.build();
     }
@@ -35,5 +36,10 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    public Filter JwtAuthenticationFilter() {
+        return new JwtAuthenticationFilter();
     }
 }
