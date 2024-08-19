@@ -3,7 +3,6 @@ package com.autosync.autosync.Controllers;
 
 import com.autosync.autosync.Models.LoginModel;
 import com.autosync.autosync.Services.LoginService;
-import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.http.HttpResponse;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/authenticate")
@@ -23,9 +22,9 @@ public class LoginController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<String> authenticateUser(@RequestBody LoginModel loginRequest) {
-        String token = loginService.authenticateUser(loginRequest.getUsername(), loginRequest.getPassword());
-        return new ResponseEntity<>(token,HttpStatus.OK);
+    public ResponseEntity<Map<String, String>> authenticateUser(@RequestBody LoginModel loginRequest) {
+        Map<String ,String> token = loginService.authenticateUser(loginRequest.getUsername(), loginRequest.getPassword());
+        return new ResponseEntity<Map<String ,String>>(token,HttpStatus.OK);
     }
 
     @PostMapping("/signup")
