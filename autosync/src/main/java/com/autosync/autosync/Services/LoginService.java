@@ -38,6 +38,20 @@ public class LoginService {
                 .compact();
     }
 
+    public String authenticateUser(String username, String password) {
+        Optional<LoginModel> optionalLogin = loginRepository.findByUsername(username);
 
+        if (optionalLogin.isPresent()) {
+            LoginModel login = optionalLogin.get();
+
+            if (bCryptPasswordEncoder.matches(password, login.getPassword())) {
+                return generateJwtToken(login);
+            } else {
+                throw new CustomExceptions.InvalidCredentialsException("Invalid username or password");
+            }
+        } else {
+            throw new CustomExceptions.UserNotFoundException("User not found");
+        }
+    }
 
 }
