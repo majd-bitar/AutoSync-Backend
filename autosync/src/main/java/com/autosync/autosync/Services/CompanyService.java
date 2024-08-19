@@ -83,5 +83,17 @@ public class CompanyService {
             throw new CustomExceptions.MechanicNotFoundException("Mechanic not found.");
         }
     }
+    public CompanyModel removeMechanicFromCompany(UUID companyId, UUID mechanicId) throws CustomExceptions.CompanyNotFoundException, CustomExceptions.MechanicNotFoundException {
+        CompanyModel company = getCompanyById(companyId);
+        Optional<MechanicModel> mechanicOptional = mechanicRepository.findById(mechanicId);
+        if (mechanicOptional.isPresent()) {
+            MechanicModel mechanic = mechanicOptional.get();
+            mechanic.setCompany(null);
+            mechanicRepository.save(mechanic);
+            return company;
+        } else {
+            throw new CustomExceptions.MechanicNotFoundException("Mechanic not found.");
+        }
+    }
 
 }
