@@ -12,10 +12,7 @@ import com.autosync.autosync.ExceptionHandling.CustomExceptions;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-@Slf4j
 @Service
 public class ProfileService {
 
