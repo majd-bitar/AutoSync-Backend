@@ -57,4 +57,13 @@ public class MechanicService {
         }
     }
 
+    public void deleteMechanic(UUID mechanicId) throws CustomExceptions.MechanicNotFoundException {
+        Optional<MechanicModel> existingMechanic = mechanicRepository.findById(mechanicId);
+        if (existingMechanic.isPresent()) {
+            mechanicRepository.delete(existingMechanic.get());
+        } else {
+            throw new CustomExceptions.MechanicNotFoundException("Mechanic not found");
+        }
+    }
+
 }
