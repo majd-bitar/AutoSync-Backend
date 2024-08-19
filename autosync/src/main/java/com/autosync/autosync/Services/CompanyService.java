@@ -96,4 +96,15 @@ public class CompanyService {
         }
     }
 
+    public CompanyModel linkLicenseToCompany(UUID companyId, UUID licenseId) throws CustomExceptions.CompanyNotFoundException, CustomExceptions.LicenseNotFoundException {
+        CompanyModel company = getCompanyById(companyId);
+        Optional<LicenseModel> licenseOptional = licenseRepository.findById(licenseId);
+        if (licenseOptional.isPresent()) {
+            company.setLicense(licenseOptional.get());
+            return companyRepository.save(company);
+        } else {
+            throw new CustomExceptions.LicenseNotFoundException("License not found.");
+        }
+    }
+
 }
