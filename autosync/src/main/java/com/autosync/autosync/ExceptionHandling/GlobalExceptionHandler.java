@@ -121,6 +121,12 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(CustomExceptions.DiagnosticNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleDiagnosticNotFoundException(CustomExceptions.DiagnosticNotFoundException ex){
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
     //other exceptions
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneralException(Exception ex) {

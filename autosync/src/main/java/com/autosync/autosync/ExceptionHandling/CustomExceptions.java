@@ -94,4 +94,10 @@ public class CustomExceptions {
         }
     }
 
+    public static class DiagnosticNotFoundException extends RuntimeException {
+        public DiagnosticNotFoundException(String message) {
+            super(message);
+        }
+    }
+
 }
