@@ -9,8 +9,10 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import com.autosync.autosync.ExceptionHandling.CustomExceptions;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class LoginService {
@@ -35,4 +37,7 @@ public class LoginService {
                 .signWith(SignatureAlgorithm.HS256, JWTSecret)
                 .compact();
     }
+
+
+
 }
