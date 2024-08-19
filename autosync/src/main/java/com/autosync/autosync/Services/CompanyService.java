@@ -3,6 +3,7 @@ package com.autosync.autosync.Services;
 
 import com.autosync.autosync.ExceptionHandling.CustomExceptions;
 import com.autosync.autosync.Models.CompanyModel;
+import com.autosync.autosync.Models.LicenseModel;
 import com.autosync.autosync.Repositories.CompanyRepository;
 import com.autosync.autosync.Repositories.LicenseRepository;
 import com.autosync.autosync.Repositories.MechanicRepository;
@@ -60,4 +61,12 @@ public class CompanyService {
         }
     }
 
+    public void deleteCompany(UUID companyId) throws CustomExceptions.CompanyNotFoundException {
+        Optional<CompanyModel> companyOptional = companyRepository.findById(companyId);
+        if (companyOptional.isPresent()) {
+            companyRepository.delete(companyOptional.get());
+        } else {
+            throw new CustomExceptions.CompanyNotFoundException("Company not found.");
+        }
+    }
 }
