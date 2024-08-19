@@ -31,4 +31,36 @@ public class LicenseService {
             throw new CustomExceptions.LicenseNotFoundException("License not found");
         }
     }
+    public List<LicenseModel> getAllLicenses() {
+        return licenseRepository.findAll();
+    }
+
+    public LicenseModel updateLicense(UUID licenseId, LicenseModel licenseDetails) throws CustomExceptions.LicenseNotFoundException {
+        Optional<LicenseModel> existingLicenseOptional = licenseRepository.findById(licenseId);
+        if(existingLicenseOptional.isPresent()) {
+            LicenseModel existingLicense = existingLicenseOptional.get();
+            if (licenseDetails.getType() != null) {
+                existingLicense.setType(licenseDetails.getType());
+            }
+            if (licenseDetails.getMaxClients() != null) {
+                existingLicense.setMaxClients(licenseDetails.getMaxClients());
+            }
+            if (licenseDetails.getPrice() != null) {
+                existingLicense.setPrice(licenseDetails.getPrice());
+            }
+            return licenseRepository.save(existingLicense);
+        } else {
+            throw new CustomExceptions.LicenseNotFoundException("License not found");
+        }
+    }
+
+    public void deleteLicense(UUID licenseId) throws CustomExceptions.LicenseNotFoundException {
+        Optional<LicenseModel> existingLicense = licenseRepository.findById(licenseId);
+        if(existingLicense.isPresent()){
+            licenseRepository.delete(existingLicense.get());
+        } else {
+            throw new CustomExceptions.LicenseNotFoundException("License not found");
+        }
+    }
+
 }
