@@ -59,6 +59,7 @@ public class CompanyController {
         return new ResponseEntity<>(company, HttpStatus.OK);
     }
 
+
     @PostMapping("/{companyId}/assignMechanic/{mechanicId}")
     public ResponseEntity<CompanyModel> assignMechanicToCompany(@PathVariable UUID companyId, @PathVariable UUID mechanicId) {
         CompanyModel company = companyService.assignMechanicToCompany(companyId, mechanicId);
