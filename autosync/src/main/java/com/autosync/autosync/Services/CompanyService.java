@@ -4,6 +4,7 @@ package com.autosync.autosync.Services;
 import com.autosync.autosync.ExceptionHandling.CustomExceptions;
 import com.autosync.autosync.Models.CompanyModel;
 import com.autosync.autosync.Models.LicenseModel;
+import com.autosync.autosync.Models.MechanicModel;
 import com.autosync.autosync.Repositories.CompanyRepository;
 import com.autosync.autosync.Repositories.LicenseRepository;
 import com.autosync.autosync.Repositories.MechanicRepository;
@@ -69,4 +70,18 @@ public class CompanyService {
             throw new CustomExceptions.CompanyNotFoundException("Company not found.");
         }
     }
+
+    public CompanyModel assignMechanicToCompany(UUID companyId, UUID mechanicId) throws CustomExceptions.CompanyNotFoundException, CustomExceptions.MechanicNotFoundException {
+        CompanyModel company = getCompanyById(companyId);
+        Optional<MechanicModel> mechanicOptional = mechanicRepository.findById(mechanicId);
+        if (mechanicOptional.isPresent()) {
+            MechanicModel mechanic = mechanicOptional.get();
+            mechanic.setCompany(company);
+            mechanicRepository.save(mechanic);
+            return company;
+        } else {
+            throw new CustomExceptions.MechanicNotFoundException("Mechanic not found.");
+        }
+    }
+
 }
