@@ -41,7 +41,7 @@ public class LoginService {
             String token = Jwts.builder()
                     .setSubject(login.getUsername())
                     .claim("id", id)
-                    .claim("role", role)
+                    .claim("role",role)
                     .claim("status", status)
                     .setIssuedAt(new Date())
                     .setExpiration(new Date(System.currentTimeMillis() + 3600000)) // 1 hour expiration

@@ -6,8 +6,13 @@ import com.autosync.autosync.Services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +37,7 @@ public class ProfileController {
         return new ResponseEntity<>(profile, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('CAR_OWNER')")
     @GetMapping("/all")
     public ResponseEntity<List<ProfileModel>> getAllProfiles() {
         List<ProfileModel> profiles = profileService.getAllProfiles();
