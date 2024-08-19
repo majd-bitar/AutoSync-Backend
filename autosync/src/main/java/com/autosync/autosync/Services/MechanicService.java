@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.autosync.autosync.ExceptionHandling.CustomExceptions;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class MechanicService {
@@ -19,17 +20,32 @@ public class MechanicService {
     @Autowired
     MechanicRepository mechanicRepository;
 
-    public MechanicModel createMechanic(MechanicModel mechanic) throws CustomExceptions.MechanicNotProvidedException {
+    public MechanicModel createMechanic(MechanicModel mechanic) throws CustomExceptions.MechanicNotProvidedException, CustomExceptions.CompanyNotProvidedException {
+        if (mechanic == null) {
+            throw new CustomExceptions.MechanicNotProvidedException("Mechanic is not provided.");
+        }
+
         if (mechanic.getCompany() != null) {
             Optional<CompanyModel> companyOptional = companyRepository.findById(mechanic.getCompany().getCompanyId());
             if (companyOptional.isPresent()) {
                 mechanic.setCompany(companyOptional.get());
-                return mechanicRepository.save(mechanic);
             } else {
-                throw new CustomExceptions.CompanyNotFoundException("Company does not exist.");
+                throw new CustomExceptions.CompanyNotProvidedException("Company does not exist.");
             }
         } else {
-            throw new CustomExceptions.MechanicNotProvidedException("Company not provided for the mechanic.");
+            throw new CustomExceptions.CompanyNotProvidedException("Company is not provided.");
+        }
+
+        return mechanicRepository.save(mechanic);
+    }
+
+    public MechanicModel getMechanicById(UUID mechanicId) throws CustomExceptions.MechanicNotFoundException {
+        Optional<MechanicModel> retrievedMechanic = mechanicRepository.findById(mechanicId);
+        if (retrievedMechanic.isPresent()) {
+            return retrievedMechanic.get();
+        } else {
+            throw new CustomExceptions.MechanicNotFoundException("Mechanic not found");
         }
     }
+
 }
