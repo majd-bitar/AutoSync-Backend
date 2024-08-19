@@ -54,6 +54,11 @@ public class CustomExceptions {
             super(message);
         }
     }
+    public static class CarOwnerNotFoundException extends RuntimeException{
+        public CarOwnerNotFoundException(String message){
+            super(message);
+        }
+    }
     public static class UniqueKeyViolationException extends RuntimeException {
         public UniqueKeyViolationException(String message) {
             super(message);

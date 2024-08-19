@@ -1,5 +1,6 @@
 package com.autosync.autosync.ExceptionHandling;
 
+import jakarta.persistence.ElementCollection;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -112,6 +113,12 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleMechanicNotProvidedException(CustomExceptions.MechanicNotProvidedException ex) {
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CustomExceptions.CarOwnerNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleCarOwnerNotFoundException(CustomExceptions.CarOwnerNotFoundException ex){
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
     //other exceptions
