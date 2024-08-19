@@ -1,5 +1,6 @@
 package com.autosync.autosync.Services;
 
+import com.autosync.autosync.Models.CarModel;
 import com.autosync.autosync.Models.CarOwnerModel;
 import com.autosync.autosync.Repositories.CarOwnerRepository;
 import com.autosync.autosync.ExceptionHandling.CustomExceptions;
@@ -16,12 +17,10 @@ public class CarOwnerService {
     @Autowired
     private CarOwnerRepository carOwnerRepository;
 
-    // Create a new car owner
     public CarOwnerModel createCarOwner(CarOwnerModel carOwner) {
         return carOwnerRepository.save(carOwner);
     }
 
-    // Retrieve a car owner by ID
     public CarOwnerModel getCarOwnerById(UUID carOwnerId) throws CustomExceptions.CarOwnerNotFoundException {
         Optional<CarOwnerModel> retrievedCarOwner = carOwnerRepository.findById(carOwnerId);
         if (retrievedCarOwner.isPresent()) {
@@ -31,12 +30,10 @@ public class CarOwnerService {
         }
     }
 
-    // Retrieve all car owners
     public List<CarOwnerModel> getAllCarOwners() {
         return carOwnerRepository.findAll();
     }
 
-    // Delete a car owner
     public void deleteCarOwner(UUID carOwnerId) throws CustomExceptions.CarOwnerNotFoundException {
         Optional<CarOwnerModel> existingCarOwner = carOwnerRepository.findById(carOwnerId);
         if (existingCarOwner.isPresent()) {
@@ -44,5 +41,12 @@ public class CarOwnerService {
         } else {
             throw new CustomExceptions.CarOwnerNotFoundException("Car owner not found.");
         }
+    }
+
+    // Associate a car owner with a car
+    public CarOwnerModel associateCarWithOwner(UUID carOwnerId, CarModel car) throws CustomExceptions.CarOwnerNotFoundException {
+        CarOwnerModel carOwner = getCarOwnerById(carOwnerId);
+        carOwner.setCar(car); // Assuming addCar method exists in CarOwnerModel
+        return carOwnerRepository.save(carOwner);
     }
 }
