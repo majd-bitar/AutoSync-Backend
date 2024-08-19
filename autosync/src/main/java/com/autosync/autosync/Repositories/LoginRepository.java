@@ -9,4 +9,6 @@ import java.util.UUID;
 public interface LoginRepository extends JpaRepository<LoginModel, UUID> {
     //Spring Data JPA automatically interprets this method name and generates the appropriate query based on the entity's username field.
     Optional<LoginModel> findByUsername(String username);
+    
+    boolean existsByUsername(String username);
 }

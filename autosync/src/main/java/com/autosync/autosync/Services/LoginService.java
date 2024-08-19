@@ -66,5 +66,19 @@ public class LoginService {
         }
     }
 
+    // Method to handle user signup
+    public LoginModel signup(LoginModel loginModel) {
+        // Check if the username or email already exists
+        if (loginRepository.existsByUsername(loginModel.getUsername())) {
+            throw new CustomExceptions.UsernameAlreadyExistsException("Username already exists");
+        }
+
+        loginModel.setPassword(bCryptPasswordEncoder.encode(loginModel.getPassword()));
+        if (loginModel.getStatus() == null) {
+            loginModel.setStatus(LoginModel.Status.INACTIVE);
+        }
+        return loginRepository.save(loginModel);
+    }
+
 
 }
