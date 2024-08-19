@@ -21,6 +21,7 @@ public class LoginController {
     @Autowired
     LoginService loginService;
 
+
     @PostMapping("/login")
     public ResponseEntity<String> authenticateUser(@RequestBody LoginModel loginRequest) {
         String token = loginService.authenticateUser(loginRequest.getUsername(), loginRequest.getPassword());
