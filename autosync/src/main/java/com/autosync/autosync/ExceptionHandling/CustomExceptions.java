@@ -77,4 +77,16 @@ public class CustomExceptions {
         }
     }
 
+    public static class MechanicNotFoundException extends RuntimeException {
+        public MechanicNotFoundException(String message) {
+            super(message);
+        }
+    }
+
+    public static class MechanicNotProvidedException extends RuntimeException {
+        public MechanicNotProvidedException(String message) {
+            super(message);
+        }
+    }
+
 }

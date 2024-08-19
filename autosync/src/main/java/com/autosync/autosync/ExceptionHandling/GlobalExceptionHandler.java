@@ -102,6 +102,18 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
     }
 
+    @ExceptionHandler(CustomExceptions.MechanicNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleMechanicNotFoundException(CustomExceptions.MechanicNotFoundException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CustomExceptions.MechanicNotProvidedException.class)
+    public ResponseEntity<ErrorResponse> handleMechanicNotProvidedException(CustomExceptions.MechanicNotProvidedException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
     //other exceptions
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneralException(Exception ex) {
