@@ -36,12 +36,14 @@ public class LoginModel {
     @JoinColumn(name = "profile_id")
     private ProfileModel loginProfile;
 
+    public enum Role{
+        CAR_OWNER,MECHANIC,ADMIN
+    }
+
+    public enum Status{
+        ACTIVE,INACTIVE,SUSPENDED
+    }
 }
 
-enum Role{
-    CAR_OWNER,MECHANIC,ADMIN
-}
 
-enum Status{
-    ACTIVE,INACTIVE,SUSPENDED
-}
+

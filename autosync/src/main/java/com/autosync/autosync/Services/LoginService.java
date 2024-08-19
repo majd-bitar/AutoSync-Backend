@@ -13,6 +13,7 @@ import com.autosync.autosync.ExceptionHandling.CustomExceptions;
 
 import java.util.Date;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class LoginService {
@@ -53,5 +54,17 @@ public class LoginService {
             throw new CustomExceptions.UserNotFoundException("User not found");
         }
     }
+
+    public LoginModel updateStatus(UUID loginId, LoginModel.Status status) {
+        Optional<LoginModel> optionalLogin = loginRepository.findById(loginId);
+        if(optionalLogin.isPresent()){
+            optionalLogin.get().setStatus(status);
+            return loginRepository.save(optionalLogin.get());
+        }
+        else{
+            throw new CustomExceptions.UserNotFoundException("User not found");
+        }
+    }
+
 
 }
