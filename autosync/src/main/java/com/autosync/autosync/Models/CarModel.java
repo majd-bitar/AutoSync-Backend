@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.time.Year;
 import java.util.List;
 import java.util.UUID;
@@ -38,5 +39,8 @@ public class CarModel {
     //a car can have many diagnostics
     @OneToMany(mappedBy = "carDiagnostic")
     private List<DiagnosticModel> diagnostics;
+
+    @Column(name = "timestamp")
+    private LocalDateTime timestamp;
 
 }

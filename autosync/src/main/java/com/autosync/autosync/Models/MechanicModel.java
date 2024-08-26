@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,5 +35,7 @@ public class MechanicModel {
     @JoinColumn(name = "company_id")
     private CompanyModel company;
 
+    @Column(name = "timestamp")
+    private LocalDateTime timestamp;
 
 }

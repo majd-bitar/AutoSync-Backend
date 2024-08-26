@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -46,5 +47,8 @@ public class ProfileModel {
     //a profile belongs to a mechanic
     @OneToOne(mappedBy = "mechanicProfile",cascade = CascadeType.ALL,orphanRemoval = true)
     private MechanicModel mechanic;
+
+    @Column(name = "timestamp")
+    private LocalDateTime timestamp;
 
 }

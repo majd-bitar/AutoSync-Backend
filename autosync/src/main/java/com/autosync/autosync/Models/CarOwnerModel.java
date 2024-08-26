@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -31,5 +32,8 @@ public class CarOwnerModel {
     @OneToOne
     @JoinColumn(name = "car_id")
     private CarModel car;
+
+    @Column(name = "timestamp")
+    private LocalDateTime timestamp;
 
 }

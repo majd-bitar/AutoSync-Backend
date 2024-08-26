@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -35,6 +36,9 @@ public class LoginModel {
     @OneToOne()
     @JoinColumn(name = "profile_id")
     private ProfileModel loginProfile;
+
+    @Column(name = "timestamp")
+    private LocalDateTime timestamp;
 
     public enum Role{
         CAR_OWNER,MECHANIC,ADMIN

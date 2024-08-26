@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -30,6 +31,9 @@ public class LicenseModel {
     //a license type can be owned by one company
     @OneToOne(mappedBy = "license")
     private CompanyModel company;
+
+    @Column(name = "timestamp")
+    private LocalDateTime timestamp;
 
     public enum Type{
         SILVER,GOLD,PLATINUM,DIAMOND
